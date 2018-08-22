@@ -28,6 +28,11 @@ pipeline {
                 )
             }
         }
+        stage('Promote RC to artifactory') {
+            steps {
+                build job: 'promote-rc-1.3.0'
+            }
+        }
     }
     post {
         always {

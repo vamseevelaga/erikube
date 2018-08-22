@@ -31,7 +31,7 @@ pipeline {
                             build job: 'daily-e2c-deploy-rel-1.3.0'
                         },
                         'E2C Upgrade Release 1.3.0': {
-                            build job: 'daily-e2c-upgrade-rel-1-3.x'
+                            build job: 'daily-e2c-upgrade-rel-1-3.0'
                         }
                 )
             }

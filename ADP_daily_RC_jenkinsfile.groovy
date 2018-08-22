@@ -16,8 +16,7 @@ pipeline {
                 sh 'sudo chown -R ${USER}:${USER} .'
                 deleteDir()
                 echo 'Checkout rel/1.3.0 code...'
-                checkout([$class: 'GitSCM', doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url:'https://github.com/vamseevelaga/erikube.git']]])
-            }
+                }
         }
         stage('Trigger all daily testing') {
             steps {

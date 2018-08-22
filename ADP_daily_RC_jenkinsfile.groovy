@@ -24,14 +24,14 @@ pipeline {
                         'Daily VMware Release "${data.get(3)}"': {
                             build job: 'vmware-"${data.get(2)}"-$"{data.get(3)}”'
                         },
-                        "Daily VMware HA Release ${data.get(3)}”: {
-                            build job: "daily-vmware-ha-${data.get(2)}-${data.get(3)}”
+                        'Daily VMware HA Release "${data.get(3)}”': {
+                            build job: 'daily-vmware-ha-"${data.get(2)}"-"${data.get(3)}”'
                         },
-                        "E2C Deploy Release ${data.get(3)}”: {
-                            build job: "daily-e2c-deploy-${data.get(2)}-${data.get(3)}”
+                        'E2C Deploy Release "${data.get(3)}”': {
+                            build job: 'daily-e2c-deploy-"${data.get(2)}"-"${data.get(3)}”'
                         }, 
-                        "E2C Upgrade Release ${data.get(3)}”: { 
-                            build job: "daily-e2c-upgrade-${data.get(2)}-${data.get}(3)”
+                        'E2C Upgrade Release "${data.get(3)}”': { 
+                            build job: 'daily-e2c-upgrade-"${data.get(2)}"-"${data.get}(3)”'
                        }
                 )
             }

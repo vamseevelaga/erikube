@@ -11,10 +11,10 @@ pipeline {
     }
     stages {
         def release_version = ${GERRIT_REFSPEC}.split('/')
-        echo "${data.get(0)}"
-        echo "${data.get(1)}"
-        echo "${data.get(2)}"
-        echo "${data.get(3)}"
+        echo "${data.get(0)}";
+        echo "${data.get(1)}";
+        echo "${data.get(2)}";
+        echo "${data.get(3)}";
         stage('Trigger all daily testing') {
             steps {
                 parallel(

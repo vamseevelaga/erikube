@@ -11,6 +11,9 @@ pipeline {
     }
     stages {
         def release_version = ${GERRIT_REFSPEC}.split('/')
+        println "${data.get(0)}
+        println "${data.get(1)}                                       
+        println "${data.get(2)}"
         echo "${data.get(0)}";
         echo "${data.get(1)}";
         echo "${data.get(2)}";

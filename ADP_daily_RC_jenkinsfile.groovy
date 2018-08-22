@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    aagent any
     options {
         timestamps()
         skipStagesAfterUnstable()

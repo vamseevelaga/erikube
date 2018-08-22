@@ -16,7 +16,7 @@ pipeline {
                 sh 'sudo chown -R ${USER}:${USER} .'
                 deleteDir()
                 echo 'Checkout rel/1.1.x code...'
-                checkout([$class: 'GitSCM', branches: [[name: '*/rel/1.1.x']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '00979d43-f305-4af8-b874-ec20d3e2beec', url: 'ssh://gerrit.ericsson.se:29418/erikube/erikube.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/rel/1.3.0']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vamseevelaga/erikube.git']]])
             }
         }
         stage('Trigger all daily testing') {

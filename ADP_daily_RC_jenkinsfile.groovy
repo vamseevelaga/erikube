@@ -15,7 +15,7 @@ pipeline {
             steps {
                 parallel(
                         'Daily VMware Release "${data.get(3)}"': {
-                            build job: 'vmware-"${data.get(2)}"-$"{data.get(3)}”'
+                            build job: 'vmware-"${data.get(2)}"-"${data.get(3)}”'
                         },
                         'Daily VMware HA Release "${data.get(3)}”': {
                             build job: 'daily-vmware-ha-"${data.get(2)}"-"${data.get(3)}”'

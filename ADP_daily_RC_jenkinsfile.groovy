@@ -8,7 +8,7 @@ pipeline {
     environment {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
-        def release_version = ${GERRIT_REFSPEC}.split('/')
+        def release_version = "${GERRIT_REFSPEC}".split('/')
     }
     stages {
         stage('Trigger all daily testing') {

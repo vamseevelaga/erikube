@@ -24,7 +24,7 @@ pipeline {
                         'Daily VMware Release 1.3.0': {
                             build job: 'vmware-rel-1.3.0'
                         }
-                        'Daily VMware HA Release 1.3.0': {
+                        'VMware HA Release 1.3.0': {
                             build job: 'vmware-ha-rel-1.3.0'
                         },
                         'E2C Deploy Release 1.3.0': {

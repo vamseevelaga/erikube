@@ -10,9 +10,6 @@ pipeline {
         CICD_DIR = "cicd"
     }
     stages {
-        stage('Check out code') {
-        
-        }
         stage('Trigger all daily testing') {
             steps {
                 parallel(

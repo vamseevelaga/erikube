@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'erikube-artifactory-access'
-    }
+    agent none
     options {
         timestamps()
         skipStagesAfterUnstable()

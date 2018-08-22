@@ -13,6 +13,7 @@ pipeline {
     stages {
         stage('Trigger all daily testing') {
             steps {
+                println "JOB_NAME = " + System.getenv('GERRIT_REFSPEC'); 
                 parallel(
                         "Daily VMware Release data.get(3)": {
                             build job: "vmware-${data.get(2)}-${data.get(3)}"

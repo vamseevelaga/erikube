@@ -14,8 +14,14 @@ pipeline {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
     }
-    String x = "$git log";
-    println("The value of x is " + x);
+        def getLastSuccessfulCommit() {
+       def lastSuccessfulHash = null
+       def lastSuccessfulBuild = currentBuild.rawBuild.getPreviousSuccessfulBuild()
+       if ( lastSuccessfulBuild ) {
+          lastSuccessfulHash = commitHashForBuild( lastSuccessfulBuild )
+      }
+       return lastSuccessfulHash
+  }
    stages {
         stage('Trigger all daily testing') {
             steps {

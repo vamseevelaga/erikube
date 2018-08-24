@@ -14,12 +14,8 @@ pipeline {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
     }
-   {
-    echo env.GIT_COMMIT
-    echo env.GIT_BRANCH
-    echo env.GIT_REVISION
 }
-    stages {
+   stages {
         stage('Trigger all daily testing') {
             steps {
                 parallel(

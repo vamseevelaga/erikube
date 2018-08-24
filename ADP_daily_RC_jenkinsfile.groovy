@@ -10,7 +10,6 @@ pipeline {
         skipStagesAfterUnstable()
         timeout(time: 4, unit: 'HOURS')
     }
-    git describe --always
     stages {
         stage('Trigger all daily testing') {
             steps {

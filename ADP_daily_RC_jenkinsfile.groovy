@@ -17,7 +17,7 @@ pipeline {
         stage('Trigger all daily testing') {
             steps {
                 parallel(
-                        echo "Running ${env.GERRIT_REFSPEC} 
+                        echo "Running ${env.GERRIT_REFSPEC}"
                         'Daily VMware Release 1.3.0': {
                             build job: 'vmware-rel-1.3.0'
                         },

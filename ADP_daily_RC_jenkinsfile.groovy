@@ -2,6 +2,7 @@
 
 
 
+import hudson.model.*
 pipeline {
     agent any
     options {
@@ -13,15 +14,25 @@ pipeline {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
     }
+    def changeLogSets = currentBuild.changeSets
+    for (int i = 0; i < changeLogSets.size(); i++) {
+      def entries = changeLogSets[i].items
+      for (int j = 0; j < entries.length; j++) {
+        def entry = entries[j]
+        def files = new ArrayList(entry.affectedFiles)
+        for (int k = 0; k < files.size(); k++) {
+          def file = files[k]
+          println file.path
+    }
+  }
+}
     stages {
         stage('Trigger all daily testing') {
             steps {
                 parallel(
-                        System.getenv("GERRIT_REFSPEC")
                         'Daily VMware Release 1.3.0': {
                             build job: 'vmware-rel-1.3.0'
-                        },
-                        System.getenv("GERRIT_REFSPEC") 
+                        }, 
                         'Daily VMware HA Release 1.3.0': {
                             build job: 'vmware-ha-rel-1.3.0'
                         },

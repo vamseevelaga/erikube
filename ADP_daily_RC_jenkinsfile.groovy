@@ -14,7 +14,8 @@ pipeline {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
     }
-    git log ${job: 'vmware-rel-1.3.0'} 
+    String x = "$git log";
+    println("The value of x is " + x);
    stages {
         stage('Trigger all daily testing') {
             steps {

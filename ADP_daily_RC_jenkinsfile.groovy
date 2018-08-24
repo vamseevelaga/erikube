@@ -10,8 +10,7 @@ pipeline {
         skipStagesAfterUnstable()
         timeout(time: 4, unit: 'HOURS')
     }
-    git url: "$GIT_REPO_URL", branch: "$GIT_BRANCH"
-    echo env.GIT_REVISION
+    git describe --always
     stages {
         stage('Trigger all daily testing') {
             steps {

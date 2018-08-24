@@ -17,11 +17,11 @@ pipeline {
         stage('Trigger all daily testing') {
             steps {
                 parallel(
-                        echo "Running ${env.GERRIT_REFSPEC}"
+                        System.getenv("GERRIT_REFSPEC")
                         'Daily VMware Release 1.3.0': {
                             build job: 'vmware-rel-1.3.0'
                         },
-                        echo "Running ${env.GERRIT_REFSPEC} 
+                        System.getenv("GERRIT_REFSPEC") 
                         'Daily VMware HA Release 1.3.0': {
                             build job: 'vmware-ha-rel-1.3.0'
                         },

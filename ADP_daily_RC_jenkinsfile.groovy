@@ -14,7 +14,6 @@ pipeline {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
     }
-    <!-- CHANGE SET -->
 <% changeSet = build.changeSet
 if (changeSet != null) {
 hadChanges = false %>

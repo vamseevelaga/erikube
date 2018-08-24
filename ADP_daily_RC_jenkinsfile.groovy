@@ -14,7 +14,6 @@ pipeline {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
     }
-}
    stages {
         stage('Trigger all daily testing') {
             steps {

@@ -13,7 +13,6 @@ pipeline {
     environment {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
-    }
         def getLastSuccessfulCommit() {
        def lastSuccessfulHash = null
        def lastSuccessfulBuild = currentBuild.rawBuild.getPreviousSuccessfulBuild()
@@ -22,6 +21,8 @@ pipeline {
       }
        return lastSuccessfulHash
   }
+    }
+       
    stages {
         stage('Trigger all daily testing') {
             steps {

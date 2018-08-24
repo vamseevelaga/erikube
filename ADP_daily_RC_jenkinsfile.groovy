@@ -14,8 +14,6 @@ pipeline {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
     }
-    git log --since=1.days
-    git checkout remotes/origin/rel-1.3.0
    stages {
         stage('Trigger all daily testing') {
             steps {

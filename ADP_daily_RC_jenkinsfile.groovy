@@ -14,18 +14,23 @@ pipeline {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
     }
-    def changeLogSets = currentBuild.changeSets
-    for (int i = 0; i < changeLogSets.size(); i++) {
-      def entries = changeLogSets[i].items
-      for (int j = 0; j < entries.length; j++) {
-        def entry = entries[j]
-        def files = new ArrayList(entry.affectedFiles)
-        for (int k = 0; k < files.size(); k++) {
-          def file = files[k]
-          println file.path
-    }
-  }
-}
+    <!-- CHANGE SET -->
+<% changeSet = build.changeSet
+if (changeSet != null) {
+hadChanges = false %>
+<h2>Changes</h2>
+<ul>
+<% changeSet.each { cs ->
+hadChanges = true
+aUser = cs.author %>
+<li>Commit <b>${cs.revision}</b> by <b><%= aUser != null ? aUser.displayName :      it.author.displayName %>:</b> (${cs.msg})
+<ul>
+<% cs.affectedFiles.each { %>
+<li class="change-${it.editType.name}"><b>${it.editType.name}</b>: ${it.path}                              </li> <%  } %> </ul>   </li> <%  }
+
+ if (!hadChanges) { %>  
+  <li>No Changes !!</li>
+ <%  } %>   </ul> <% } %>
     stages {
         stage('Trigger all daily testing') {
             steps {

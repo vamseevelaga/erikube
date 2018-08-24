@@ -14,6 +14,8 @@ pipeline {
         REPO_DIR = "$WORKSPACE"
         CICD_DIR = "cicd"
     }
+    git log --since=1.days > change; if [ -s change ]; then export commit=false; else export commit=true; fi
+    echo $commit
    stages {
         stage('Trigger all daily testing') {
             steps {

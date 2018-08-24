@@ -15,7 +15,7 @@ pipeline {
         CICD_DIR = "cicd"
     }
    {
-    git url: "$https://github.com/vamseevelaga/erikube.git", branch: "$rel/1.3.0"
+    git url: "https://github.com/vamseevelaga/erikube.git", branch: "rel/1.3.0"
     echo env.GIT_COMMIT
     echo env.GIT_BRANCH
     echo env.GIT_REVISION

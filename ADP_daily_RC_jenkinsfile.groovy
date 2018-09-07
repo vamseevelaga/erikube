@@ -1,6 +1,7 @@
 def GERRIT_REFSPEC = env.GERRIT_REFSPEC
 def release_value = GERRIT_REFSPEC.split('/')
 def release_version = release_value[3]
+
 def build_job(job_name,latest_commit_id) {
   last_build_status = sh(returnStdout: true, script: "curl -s https://fem005-eiffel018.rnd.ki.sw.ericsson.se:8443/jenkins/job/$job_name-$release_version/lastBuild/api/xml| grep -io 'result.*/result' | sed -e 's/<.*//g' -e 's/result//g' -e 's/>//g'").trim()
   job_commit_id = sh(returnStdout: true, script: "curl -s https://fem005-eiffel018.rnd.ki.sw.ericsson.se:8443/jenkins/job/$job_name-$release_version/lastBuild/console | grep -i 'checking out' | sed 's/.*Revision //' | cut -d' ' -f1").trim()

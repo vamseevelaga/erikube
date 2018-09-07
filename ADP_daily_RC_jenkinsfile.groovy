@@ -47,7 +47,7 @@ pipeline {
                 parallel(
                         'Daily VMware Release $release_version': {
                             def job_name="vmware-rel-$release_version"
-                            build_job(release_version,job_name",latest_commit_id)
+                            build_job(release_version,job_name,latest_commit_id)
                         },
                         'Daily VMware HA Release $release_version': {
                             def job_name="vmware-ha-rel-$release_version"

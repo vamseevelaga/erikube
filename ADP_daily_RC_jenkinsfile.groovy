@@ -65,17 +65,5 @@ pipeline {
                 )
             }
         }
-        stage('Promote RC to artifactory') {
-            steps {
-                echo "[dummy] promoting to master"
-            }
-        }
-    }
-    post {
-        always {
-            echo 'Publish daily release info'
-            sh '$CICD_DIR/daily_release/daily_release.sh'
-            archiveArtifacts 'artifact.properties'
-        }
     }
 }

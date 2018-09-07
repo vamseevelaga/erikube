@@ -3,8 +3,8 @@ def release_value = GERRIT_REFSPEC.split('/')
 def release_version = release_value[3]
 
 def build_job(job_name,latest_commit_id) {
-  last_build_status = sh(returnStdout: true, script: "curl -s https://fem005-eiffel018.rnd.ki.sw.ericsson.se:8443/jenkins/job/$job_name-$release_version/lastBuild/api/xml| grep -io 'result.*/result' | sed -e 's/<.*//g' -e 's/result//g' -e 's/>//g'").trim()
-  job_commit_id = sh(returnStdout: true, script: "curl -s https://fem005-eiffel018.rnd.ki.sw.ericsson.se:8443/jenkins/job/$job_name-$release_version/lastBuild/console | grep -i 'checking out' | sed 's/.*Revision //' | cut -d' ' -f1").trim()
+  last_build_status = sh(returnStdout: true, script: "curl -s https://fem005-eiffel018.rnd.ki.sw.ericsson.se:8443/jenkins/job/$job_name/lastBuild/api/xml| grep -io 'result.*/result' | sed -e 's/<.*//g' -e 's/result//g' -e 's/>//g'").trim()
+  job_commit_id = sh(returnStdout: true, script: "curl -s https://fem005-eiffel018.rnd.ki.sw.ericsson.se:8443/jenkins/job/$job_name/lastBuild/console | grep -i 'checking out' | sed 's/.*Revision //' | cut -d' ' -f1").trim()
   if (!job_commit_id) {
     echo "Release version for $job_name is not appropriate"
   }
@@ -46,20 +46,20 @@ pipeline {
             steps {
                 parallel(
                         'Daily VMware Release $release_version': {
-                            //def job_name="vmware-rel-$release_version"
-                            build_job(release_version,"vmware-rel-$release_version",latest_commit_id)
+                            def job_name="vmware-rel-$release_version"
+                            build_job(release_version,job_name",latest_commit_id)
                         },
                         'Daily VMware HA Release $release_version': {
-                            //def job_name="vmware-ha-rel-$release_version"
-                            build_job(release_version,"vmware-ha-rel-$release_version",latest_commit_id)
+                            def job_name="vmware-ha-rel-$release_version"
+                            build_job(release_version,job_name,latest_commit_id)
                         },
                         'E2C Deploy Release $release_version': {
-                            //def job_name="daily-e2c-deploy-rel-$release_version"
-                            build_job(release_version,"daily-e2c-deploy-rel-$release_version",latest_commit_id)
+                            def job_name="daily-e2c-deploy-rel-$release_version"
+                            build_job(release_version,job_name,latest_commit_id)
                         },
                         'E2C Upgrade Release $release_version': {
-                            //def job_name="daily-e2c-upgrade-rel-$release_version"
-                            build_job(release_version,"daily-e2c-upgrade-rel-$release_version",latest_commit_id)
+                            def job_name="daily-e2c-upgrade-rel-$release_version"
+                            build_job(release_version,job_name,latest_commit_id)
                       }
                 )
             }

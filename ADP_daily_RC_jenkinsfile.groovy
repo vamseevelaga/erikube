@@ -47,19 +47,19 @@ pipeline {
                 parallel(
                         'Daily VMware Release $release_version': {
                             //def job_name="vmware-rel-$release_version"
-                            build_job(release_version,"vmware-rel-"$release_version,latest_commit_id)
+                            build_job("vmware-rel-"'$release_version',latest_commit_id)
                         },
                         'Daily VMware HA Release $release_version': {
                             //def job_name="vmware-ha-rel-$release_version"
-                            build_job(release_version,"vmware-ha-rel-"$release_version,latest_commit_id)
+                            build_job("vmware-ha-rel-"'$release_version',latest_commit_id)
                         },
                         'E2C Deploy Release $release_version': {
                             //def job_name="daily-e2c-deploy-rel-$release_version"
-                            build_job(release_version,"daily-e2c-deploy-rel-"$release_version,latest_commit_id)
+                            build_job("daily-e2c-deploy-rel-"'$release_version',latest_commit_id)
                         },
                         'E2C Upgrade Release $release_version': {
                             //def job_name="daily-e2c-upgrade-rel-$release_version"
-                            build_job(release_version,"daily-e2c-upgrade-rel-"$release_version,latest_commit_id)
+                            build_job("daily-e2c-upgrade-rel-"'$release_version',latest_commit_id)
                       }
                 )
             }

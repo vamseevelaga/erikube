@@ -35,7 +35,7 @@ pipeline {
         stage('Check out code') {
             steps {
                 echo 'Initial cleanup and checkout...'
-                sh 'sudo chown -R ${USER}:${USER} .'
+                //sh 'sudo chown -R ${USER}:${USER} .'
                 deleteDir()
                 echo 'Checkout rel/$release_version code...'
                 checkout([$class: 'GitSCM', branches: [[name: '*/rel/$release_version']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '00979d43-f305-4af8-b874-ec20d3e2beec', url: 'ssh://gerrit.ericsson.se:29418/erikube/erikube.git']]])

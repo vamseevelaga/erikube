@@ -46,6 +46,7 @@ pipeline {
             steps {
                 parallel(
                         'Daily VMware Release $release_version': {
+                          build job: '$job_name-$release_version'
                             //def job_name="vmware-rel-$release_version"
                             build_job("vmware-rel-$release_version",latest_commit_id)
                         },

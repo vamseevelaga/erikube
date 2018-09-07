@@ -1,10 +1,10 @@
 def GERRIT_REFSPEC = env.GERRIT_REFSPEC
 def release_value = GERRIT_REFSPEC.split('/')
 def release_version = release_value[3]
-//def job_name1 = "vmware-rel-1.3.0"
-//def job_name2 = "vmware-ha-rel-1.3.0"
-//def job_name3 = "daily-e2c-deploy-rel-1.3.0"
-//def job_name4 = "daily-e2c-upgrade-rel-1.3.0"
+def job_name1 = "vmware"
+def job_name2 = "vmware-ha-rel"
+def job_name3 = "daily-e2c-deploy"
+def job_name4 = "daily-e2c-upgrade-rel"
 def build_job(job_name,latest_commit_id) {
   last_build_status = sh(returnStdout: true, script: "curl -s https://fem005-eiffel018.rnd.ki.sw.ericsson.se:8443/jenkins/job/$job_name-$release_version/lastBuild/api/xml| grep -io 'result.*/result' | sed -e 's/<.*//g' -e 's/result//g' -e 's/>//g'").trim()
   job_commit_id = sh(returnStdout: true, script: "curl -s https://fem005-eiffel018.rnd.ki.sw.ericsson.se:8443/jenkins/job/$job_name-$release_version/lastBuild/console | grep -i 'checking out' | sed 's/.*Revision //' | cut -d' ' -f1").trim()
@@ -51,19 +51,19 @@ pipeline {
                         'Daily VMware Release $release_version': {
                           build job: '$job_name-$release_version'
                             //def job_name="vmware-rel-$release_version"
-                            build_job("vmware-rel-1.3.0",latest_commit_id)
+                            build_job('$job_name1-$release_version',latest_commit_id)
                         },
                         'Daily VMware HA Release $release_version': {
                             //def job_name="vmware-ha-rel-$release_version"
-                            build_job("vmware-ha-rel-1.3.0",latest_commit_id)
+                            build_job('$job_name2-$release_version',latest_commit_id)
                         },
                         'E2C Deploy Release $release_version': {
                             //def job_name="daily-e2c-deploy-rel-$release_version"
-                            build_job("daily-e2c-deploy-rel-1.3.0",latest_commit_id)
+                            build_job('$job_name3-$release_version',latest_commit_id)
                         },
                         'E2C Upgrade Release $release_version': {
                             //def job_name="daily-e2c-upgrade-rel-$release_version"
-                            build_job("daily-e2c-upgrade-rel-1.3.0",latest_commit_id)
+                            build_job('$job_name4-$release_version',latest_commit_id)
                       }
                 )
             }

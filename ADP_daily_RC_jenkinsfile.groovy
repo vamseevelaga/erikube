@@ -17,9 +17,7 @@ def build_job(job_name,latest_commit_id) {
   }
 }
 pipeline {
-    agent {
-        label 'erikube-artifactory-access'
-    }
+    agent any
     options {
         timestamps()
         skipStagesAfterUnstable()
